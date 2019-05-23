@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import bs4
 
 class downloader(object):
-	
+	'''小说下载器'''
 	def __init__(self, url):
 		self.server = "https://www.biqukan.com/"
 		self.target = url
@@ -12,7 +12,7 @@ class downloader(object):
 		self.nums = 0
 		
 	def get_page_url(self):
-		# 再次使用代理设置verify参数 不会出现代理错误的问题
+		# 使用代理时，设置verify参数 不会出现代理证书SSL错误的问题
 		certFile  = r'C:\Users\XuQ\Desktop\2.crt'
 		r = requests.get(url = self.target,verify =certFile )
 		html = r.text
@@ -23,7 +23,7 @@ class downloader(object):
 			self.nums += 1
 
 	def get_contents(self, name, target_url):
-		# print(target_url)
+		# 
 		certFile = r'C:\Users\XuQ\Desktop\2.crt'
 		r = requests.get(url = target_url, verify =certFile, headers = {'Connection': 'close'})
 		html = r.text
