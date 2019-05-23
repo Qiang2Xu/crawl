@@ -4,7 +4,7 @@ from urllib.request import urljoin
 import bs4
 
 class downloader(object):
-	
+	'''下载器的方法相同，仅仅修改了提取方法'''	
 	def __init__(self, url):
 		self.target = url
 		self.names = []
@@ -38,7 +38,6 @@ class downloader(object):
 		'''
 		if isinstance(text, bs4.element.Tag):
 			texts = str(text).replace('<br/>','\n').replace('<div id="content">','').replace('</div>','')
-			print("*****************")
 			return texts
 		else:
 			# print(name)
@@ -59,7 +58,6 @@ if __name__ == "__main__":
 	print('《一年永恒》开始下载：')
 	for i in range(d1.nums):
 		d1.writer(d1.names[i], path, d1.get_contents(d1.names[i], d1.urls[i]))
-
-		# sys.stdout.write("  已下载:%.3f%%" %  float(i/d1.nums) + '\r')
-		# sys.stdout.flush()
-	print('《一年永恒》下载完成')
+		sys.stdout.write("  已下载:%.3f%%" %  float(i/d1.nums) + '\r')
+		sys.stdout.flush()
+	print('《止戈三国》下载完成')
