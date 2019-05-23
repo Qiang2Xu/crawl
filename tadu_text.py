@@ -24,9 +24,9 @@ class tadu(object):
 			self.nums += 1
 		
 	def get_text_url(self, url):
+		# 提取存放小说文本的URL，ajax
 		r = requests.get(url, headers=self.headers, verify=self.certFile)
 		html = r.text
-		
 		soup = BeautifulSoup(html,'lxml')
 		text_url = soup.find(id="bookPartResourceUrl")
 		if not text_url:
@@ -36,7 +36,6 @@ class tadu(object):
 	def get_text(self, text_url):
 		
 		r1 = requests.get(text_url, headers=self.headers, verify=self.certFile)
-		
 		r1.encoding = r1.apparent_encoding
 		html = r1.text.replace('<p>','\n').replace('</p>','\n')
 		return html[20:-3]
@@ -54,7 +53,6 @@ if __name__=="__main__":
 	t.get_page_url()
 	for i in range(t.nums):
 		text_url = t.get_text_url(t.urls[i])
-		
 		t.writer(t.names[i], path, t.get_text(text_url))
 		sys.stdout.write("  已下载:%.3f%%" %  float(i/t.nums) + '\r')
 		sys.stdout.flush()
