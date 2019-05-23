@@ -1,13 +1,3 @@
-# from selenium import webdriver
-
-# browser = webdriver.PhantomJS(executable_path=r"D:\python\phantomjs-2.1.1-windows\bin\phantomjs.exe")
-
-# browser.get("http://www.site-digger.com/html/articles/20110516/proxieslist.html") 
-# trs = browser.find_elements_by_tag_name('tr') 
-# for tr in trs[1:]:
-	# print(tr.text.split(' ')[0])
-
-
 import requests, sys, os, json, re
 from jsonpath import jsonpath
 from bs4 import BeautifulSoup
@@ -32,6 +22,7 @@ def validateTitle(title):
 	return new_title
 
 def fetch_img(page):
+	
 	url = 'https://interface.sina.cn/tech/gif/album.d.json?format=json&num=6&page={0}&jsoncallback=getDataJson'.format(page)
 		
 	r = requests.get(url, headers=headers, verify=certFile)
