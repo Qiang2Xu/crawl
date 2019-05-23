@@ -47,8 +47,9 @@ def main(page):
 		t.download(t.names[i],t.urls[i])
 
 if __name__=="__main__":
+	
+	# 多进程
 	pool = Pool()
-
 	pool.map(main, list(range(1,6)))
 	pool.close()
 	pool.join()
